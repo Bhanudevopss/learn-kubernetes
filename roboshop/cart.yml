@@ -3,7 +3,7 @@ kind: ServiceAccount
 metadata:
   name: cart
   annotations:
-    eks.amazonaws.com/role-arn: arn:aws:iam::739561048503:role/ssm-for-eks
+    eks.amazonaws.com/role-arn: arn:aws:iam::481679057437:role/ssm-for-eks
 
 ---
 apiVersion: v1
@@ -16,13 +16,13 @@ spec:
   serviceAccountName: cart
   containers:
     - name: cart
-      image: 739561048503.dkr.ecr.us-east-1.amazonaws.com/cart:2.0.0
+      image: 481679057437.dkr.ecr.us-east-1.amazonaws.com/cart:1.0.0
       volumeMounts:
         - mountPath: /params
           name: params
   initContainers:
     - name: aws-ssm-param-store
-      image: 739561048503.dkr.ecr.us-east-1.amazonaws.com/aws-ssm-param-store:2.0.1
+      image: 481679057437.dkr.ecr.us-east-1.amazonaws.com/aws-ssm-param-store:1.0.1
       args: ["sample:dev.docdb.pass"]
       volumeMounts:
         - mountPath: /params
